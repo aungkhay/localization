@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('lang/en');
 });
 
 Route::group(['prefix' =>'/lang/{locale}', 'middleware'=>'lang'], function(){

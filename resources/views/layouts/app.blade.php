@@ -40,53 +40,33 @@
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <img src="{{ asset('img/' . session()->get('locale') . '.png') }}" width="30px" height="20x">
+                                {{ strtoupper(session()->get('locale')) }}
+                            </a>
 
-                            @foreach ( config('app.locales') as $locale)
-
-                                @if(session()->get('locale') == $locale)
-
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-
-                                        @switch($locale)
-                                            @case('fr')
-                                            <img src="{{asset('img/fr.png')}}" width="30px" height="20x"> French
-                                            @break
-                                            @case('es')
-                                            <img src="{{asset('img/es.png')}}" width="30px" height="20x"> Spain
-                                            @break
-                                            @case('jp')
-                                            <img src="{{asset('img/jp.png')}}" width="30px" height="20x"> Japanese
-                                            @break
-                                            @case('mm')
-                                            <img src="{{asset('img/mm.png')}}" width="30px" height="20x"> Myanmar
-                                            @break
-                                            @default
-                                            <img src="{{asset('img/us.png')}}" width="30px" height="20x"> English
-                                        @endswitch
-                                        
-                                    </a>
-                                    
-                                @endif
-
-                            @endforeach
-
-                            <?php
-
-                                $segment = Request::path();
-                                $last_segment = substr($segment, '7');
-
-                            ?>
+                            @php
+                                $last_segment = substr(Request::path(), '2');
+                            @endphp
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{url('lang/en'.$last_segment)}}"><img src="{{asset('img/us.png')}}" width="30px" height="20x"> English</a>
-                                <a class="dropdown-item" href="{{url('lang/fr'.$last_segment)}}"><img src="{{asset('img/fr.png')}}" width="30px" height="20x"> French</a>
-                                <a class="dropdown-item" href="{{url('lang/es'.$last_segment)}}"><img src="{{asset('img/es.png')}}" width="30px" height="20x"> Spanish</a>
-                                <a class="dropdown-item" href="{{url('lang/mm'.$last_segment)}}"><img src="{{asset('img/mm.png')}}" width="30px" height="20x"> Myanmar</a>
-                                <a class="dropdown-item" href="{{url('lang/jp'.$last_segment)}}"><img src="{{asset('img/jp.png')}}" width="30px" height="20x"> Japanese</a>
+                                <a class="dropdown-item" href="{{ url('en' . $last_segment) }}">
+                                    <img src="{{ asset('img/en.png') }}" width="30px" height="20x"> English
+                                </a>
+                                <a class="dropdown-item" href="{{ url('fr' . $last_segment) }}">
+                                    <img src="{{ asset('img/fr.png') }}" width="30px" height="20x"> French
+                                </a>
+                                <a class="dropdown-item" href="{{ url('es' . $last_segment) }}">
+                                    <img src="{{ asset('img/es.png') }}" width="30px" height="20x"> Spanish
+                                </a>
+                                <a class="dropdown-item" href="{{ url('jp' . $last_segment) }}">
+                                    <img src="{{ asset('img/jp.png') }}" width="30px" height="20x"> Japanese
+                                </a>
+                                <a class="dropdown-item" href="{{ url('mm' . $last_segment) }}">
+                                    <img src="{{ asset('img/mm.png') }}" width="30px" height="20x"> Myanmar
+                                </a>
                             </div>
-
                         </li>
-
                     </ul>
                 </div>
             </div>

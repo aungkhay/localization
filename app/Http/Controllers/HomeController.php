@@ -3,20 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App;
 
 class HomeController extends Controller
 {
-    //
-    public function lang($locale)
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        App::setLocale($locale);
-        session()->put('locale', $locale);
-        
-        return view('welcome');
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('home');
     }
 }
-
-//references
-
-//https://appdividend.com/2019/04/01/how-to-create-multilingual-website-using-laravel-localization/

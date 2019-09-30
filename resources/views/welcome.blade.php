@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <p>{{ trans('sentence.welcome')}}</p>
-                    <a href="{{route('hello', app()->getLocale())}}" class="btn btn-primary">Go</a>
+                    <a href="{{ route('hello', app()->getLocale()) }}" class="btn btn-primary">Go</a>
                 </div>
             </div>
         </div>

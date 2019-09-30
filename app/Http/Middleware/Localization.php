@@ -19,13 +19,15 @@ class Localization
      */
     public function handle($request, Closure $next)
     {
-        // if (session()->has('locale')) {
-        //     App::setLocale(session()->get('locale'));
-        // }
+        $segment = Request::segment(1);
 
-        $segment2 = Request::segment(2);
-        App::setLocale($segment2);
-        session()->put('locale', $segment2);
+        if(in_array($segment, config('app.locales'))) {
+            App::setLocale($segment);
+            session()->put('locale', $segment);
+        } else {
+            App::setLocale('mm');
+            session()->put('locale', 'mm');
+        }
 
         return $next($request);
     }
